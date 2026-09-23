@@ -10,17 +10,16 @@
 <link rel="icon" type="image/png" href="aygung.png">
 <link rel="apple-touch-icon" href="aygung.png">
 
-<!-- Open Graph / WhatsApp Preview -->
+<!-- Open Graph / WhatsApp Preview (1. FIX FOTO WHATSAPP) -->
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://saputraagung11.github.io/undangan/">
 <meta property="og:title" content="Undangan Pernikahan — Agung & Ayu">
 <meta property="og:description" content="Minggu, 10 Januari 2027 · Kp. Belendung, Ciawi, Bogor. Klik untuk melihat detail undangan.">
-
-<!-- URL Direct Gambar Mentah (Raw GitHub) -->
 <meta property="og:image" content="https://raw.githubusercontent.com/saputraagung11/undangan/main/aygung.png">
 <meta property="og:image:secure_url" content="https://raw.githubusercontent.com/saputraagung11/undangan/main/aygung.png">
 <meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="500">
-<meta property="og:image:height" content="500">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
 
 <!-- FontAwesome & Google Fonts -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -39,9 +38,14 @@
   --shadow: 0 12px 35px rgba(176, 130, 138, 0.12);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html, body{scroll-behavior:smooth}
 body{font-family:Montserrat,sans-serif;background:var(--bg);background-attachment:fixed;color:var(--text);line-height:1.7;overflow-x:hidden}
-body.locked{overflow:hidden}
+
+/* 3. FIX BUG SCROLL LOCK */
+body.locked, html.locked {
+  overflow: hidden !important;
+  height: 100vh;
+}
 
 /* Canvas Animasi Kelopak Bunga */
 #petalCanvas {
@@ -289,7 +293,7 @@ section{padding:80px 20px}
 
 <canvas id="petalCanvas"></canvas>
 
-<!-- BACKSOUND AUDIO LOKAL -->
+<!-- BACKSOUND AUDIO LOKAL (2. FIX PEMUTAR LAGU) -->
 <audio id="backsound" loop preload="auto">
   <source src="musik.mp3" type="audio/mpeg">
 </audio>
@@ -662,26 +666,45 @@ function copyToClipboard(text, btn) {
   });
 }
 
-const audio = document.getElementById('backsound');
-
+/* 3. FIX FUNGSI BUKA UNDANGAN (ANTI NGESTUCK & ANTI BLOKIR AUDIO) */
 function openInvitation() {
   document.body.classList.remove('locked');
-  toggleAudio(true);
+  document.documentElement.classList.remove('locked');
+  document.body.style.overflow = 'unset';
+  document.documentElement.style.overflow = 'unset';
+
+  var audio = document.getElementById('backsound');
+  if (audio) {
+    audio.play().then(function() {
+      var btn = document.getElementById('btn-music');
+      var navIcon = document.getElementById('navAudioIcon');
+      if (btn) btn.classList.add('active-btn');
+      if (navIcon) navIcon.classList.add('spin-icon');
+    }).catch(function(error) {
+      console.log("Autoplay ditolak browser:", error);
+    });
+  }
+
   scrollToSection('sec-home');
 }
 
 function toggleAudio(forcePlay = false) {
-  const btn = document.getElementById('btn-music');
-  const navIcon = document.getElementById('navAudioIcon');
+  var audio = document.getElementById('backsound');
+  var btn = document.getElementById('btn-music');
+  var navIcon = document.getElementById('navAudioIcon');
+
+  if (!audio) return;
 
   if (forcePlay || audio.paused) {
-    audio.play().then(() => {
-      btn.classList.add('active-btn');
+    audio.play().then(function() {
+      if (btn) btn.classList.add('active-btn');
       if (navIcon) navIcon.classList.add('spin-icon');
-    }).catch(e => console.log("Autoplay diblokir:", e));
+    }).catch(function(e) {
+      console.log("Gagal memutar audio:", e);
+    });
   } else {
     audio.pause();
-    btn.classList.remove('active-btn');
+    if (btn) btn.classList.remove('active-btn');
     if (navIcon) navIcon.classList.remove('spin-icon');
   }
 }
@@ -702,11 +725,15 @@ function toggleAutoScroll() {
   if (autoScrollInterval) {
     clearInterval(autoScrollInterval);
     autoScrollInterval = null;
-    btn.classList.remove('active-btn');
-    tooltip.style.display = 'none';
+    if (btn) btn.classList.remove('active-btn');
+    if (tooltip) tooltip.style.display = 'none';
   } else {
-    btn.classList.add('active-btn');
-    tooltip.style.display = 'block';
+    document.body.classList.remove('locked');
+    document.body.style.overflow = 'unset';
+
+    if (btn) btn.classList.add('active-btn');
+    if (tooltip) tooltip.style.display = 'block';
+    
     autoScrollInterval = setInterval(() => {
       window.scrollBy({ top: 1, behavior: 'smooth' });
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
