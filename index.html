@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -7,13 +6,17 @@
 <title>Undangan Pernikahan — Agung & Ayu</title>
 <meta name="description" content="Tanpa mengurangi rasa hormat, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dan memberikan doa restu pada pernikahan Agung & Ayu.">
 
-<!-- Open Graph / WhatsApp Preview -->
+<!-- FAVICON / LOGO TAB BROWSER -->
+<link rel="icon" type="image/png" href="aygung.png">
+<link rel="apple-touch-icon" href="aygung.png">
+
+<!-- Open Graph / WhatsApp Preview (URL GitHub Pages) -->
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://undangan-aygung.rf.gd/">
+<meta property="og:url" content="https://saputraagung11.github.io/undangan/">
 <meta property="og:title" content="Undangan Pernikahan — Agung & Ayu">
 <meta property="og:description" content="Minggu, 10 Januari 2027 · Kp. Belendung, Ciawi, Bogor. Klik untuk melihat detail undangan.">
-<meta property="og:image" content="https://cdn.jsdelivr.net/gh/saputraagung11/kwitansi@main/aygung.png?v=1">
-<meta property="og:image:secure_url" content="https://cdn.jsdelivr.net/gh/saputraagung11/kwitansi@main/aygung.png?v=1">
+<meta property="og:image" content="https://saputraagung11.github.io/undangan/aygung.png">
+<meta property="og:image:secure_url" content="https://saputraagung11.github.io/undangan/aygung.png">
 <meta property="og:image:type" content="image/png">
 
 <!-- FontAwesome & Google Fonts -->
@@ -22,7 +25,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Montserrat:wght@300;400;500;600&display=swap');
 
 :root{
-  /* Nuansa Background Pink Elegan */
   --bg: linear-gradient(135deg, #fce4ec 0%, #f4f0ea 50%, #f8bbd0 100%); 
   --paper:#fffdf9; 
   --text:#33302c; 
@@ -64,8 +66,7 @@ section{padding:80px 20px}
   text-align:center;position:relative;overflow:hidden;
   background:
     linear-gradient(rgba(40, 20, 30, 0.55), rgba(40, 20, 30, 0.55)),
-    url("https://gungxampp.byethost7.com/aygung.png")
-    center/cover;
+    url("aygung.png") center/cover;
   color:white;
 }
 .hero-inner{max-width:720px;padding:30px; z-index:2}
@@ -285,9 +286,9 @@ section{padding:80px 20px}
 
 <canvas id="petalCanvas"></canvas>
 
-<!-- Backsound Audio Player -->
-<audio id="backsound" loop>
-  <source src="https://undangan-aygung.loveslife.biz/musik-pernikahan.mp3" type="audio/mpeg">
+<!-- BACKSOUND AUDIO LOKAL -->
+<audio id="backsound" loop preload="auto">
+  <source src="musik.mp3" type="audio/mpeg">
 </audio>
 
 <!-- Cover Section -->
@@ -338,7 +339,7 @@ section{padding:80px 20px}
     </div>
   </div>
 
-  <img class="photo" src="https://gungxampp.byethost7.com/aygung.png" alt="Foto Pasangan">
+  <img class="photo" src="aygung.png" alt="Foto Pasangan">
 
   <div id="sec-lokasi" class="details" style="scroll-margin-top: 100px;">
     <div class="detail">
@@ -369,9 +370,9 @@ section{padding:80px 20px}
   <div class="kicker" style="color:var(--accent)">Our Memories</div>
   <h2 class="title serif" style="font-size:38px">Galeri Foto</h2>
   <div class="gallery-grid">
-    <img class="gallery-img" src="https://gungxampp.byethost7.com/aygung.png" alt="Prewedding 1" onclick="viewImage(this.src)">
-    <img class="gallery-img" src="https://gungxampp.byethost7.com/aygung.png" alt="Prewedding 2" onclick="viewImage(this.src)">
-    <img class="gallery-img" src="https://gungxampp.byethost7.com/aygung.png" alt="Prewedding 3" onclick="viewImage(this.src)">
+    <img class="gallery-img" src="aygung.png" alt="Prewedding 1" onclick="viewImage(this.src)">
+    <img class="gallery-img" src="aygung.png" alt="Prewedding 2" onclick="viewImage(this.src)">
+    <img class="gallery-img" src="aygung.png" alt="Prewedding 3" onclick="viewImage(this.src)">
   </div>
 </div>
 </div>
@@ -497,28 +498,18 @@ section{padding:80px 20px}
   <div id="scroll-tooltip" class="tooltip-custom">Auto Scroll Active</div>
   
   <div class="bottom-nav">
-    <!-- Home -->
     <button class="nav-item-btn" onclick="scrollToSection('sec-home')" title="Beranda"><i class="fa-solid fa-house"></i></button>
-    <!-- Mempelai -->
     <button class="nav-item-btn" onclick="scrollToSection('sec-mempelai')" title="Mempelai"><i class="fa-solid fa-user-group"></i></button>
-    <!-- Galeri Foto -->
     <button class="nav-item-btn" onclick="scrollToSection('sec-gallery')" title="Galeri"><i class="fa-solid fa-image"></i></button>
-    <!-- Lokasi -->
     <button class="nav-item-btn" onclick="scrollToSection('sec-lokasi')" title="Lokasi & Acara"><i class="fa-solid fa-map-location-dot"></i></button>
-    <!-- RSVP -->
     <button class="nav-item-btn" onclick="scrollToSection('sec-rsvp')" title="RSVP & Ucapan"><i class="fa-solid fa-qrcode"></i></button>
-    <!-- Auto Scroll Toggle -->
     <button id="btn-autoscroll" class="nav-item-btn" onclick="toggleAutoScroll()" title="Auto Scroll"><i class="fa-solid fa-arrow-down"></i></button>
-    <!-- Music Toggle -->
     <button id="btn-music" class="nav-item-btn" onclick="toggleAudio()" title="Putar/Hentikan Musik"><i id="navAudioIcon" class="fa-solid fa-music"></i></button>
   </div>
 </div>
 
 <script>
-// URL GOOGLE APPS SCRIPT DATABASE (Database Google Sheets Kamu)
 const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwBJSImqe59BWF_EsDq1ouRHYtHQmjheQn0nSgTfrxjJAKTCgcbewYaSoVdXKZcOudhXw/exec";
-
-// 1. Password Admin
 const ADMIN_PASSWORD = "1234";
 
 function unlockAdmin() {
@@ -533,7 +524,6 @@ function unlockAdmin() {
   }
 }
 
-// 2. Ambil Parameter URL ?To=
 function getGuestName() {
   const urlParams = new URLSearchParams(window.location.search);
   const guest = urlParams.get('To') || urlParams.get('to');
@@ -545,7 +535,6 @@ function getGuestName() {
   }
 }
 
-// 3. Load & Submit Wishes (Gunakan JSONP untuk Menghindari Isu CORS)
 function loadWishes() {
   const container = document.getElementById('wishesContainer');
   
@@ -624,12 +613,10 @@ function escapeHtml(text) {
   return text ? text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;") : '';
 }
 
-// 4. Preview Gambar Galeri
 function viewImage(src) {
   window.open(src, '_blank');
 }
 
-// 5. Generator Link WA
 function generateLinks() {
   const input = document.getElementById('inputNames').value.trim();
   const resultList = document.getElementById('resultList');
@@ -672,7 +659,6 @@ function copyToClipboard(text, btn) {
   });
 }
 
-// 6. Audio Control & Smooth Navigation
 const audio = document.getElementById('backsound');
 
 function openInvitation() {
@@ -704,7 +690,6 @@ function scrollToSection(id) {
   }
 }
 
-// 7. Auto Scroll Toggle Functionality
 let autoScrollInterval = null;
 
 function toggleAutoScroll() {
@@ -722,13 +707,12 @@ function toggleAutoScroll() {
     autoScrollInterval = setInterval(() => {
       window.scrollBy({ top: 1, behavior: 'smooth' });
       if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight - 5) {
-        toggleAutoScroll(); // Hentikan otomatis saat sampai di paling bawah
+        toggleAutoScroll();
       }
     }, 30);
   }
 }
 
-// 8. Countdown Timer (Target: 10 Januari 2027)
 const target = new Date("January 10, 2027 11:00:00").getTime();
 function countdown(){
   const now = new Date().getTime();
@@ -744,7 +728,6 @@ function countdown(){
 }
 countdown(); setInterval(countdown, 1000);
 
-// 9. Copy Text Rekening
 function copyText(id, button){
   const value = document.getElementById(id).textContent.trim();
   navigator.clipboard.writeText(value).then(() => {
@@ -754,7 +737,6 @@ function copyText(id, button){
   }).catch(() => alert("Nomor: " + value));
 }
 
-// 10. Animasi Kelopak Bunga Melayang (Versi Pink Soft)
 const canvas = document.getElementById('petalCanvas');
 const ctx = canvas.getContext('2d');
 
@@ -790,7 +772,7 @@ class Petal {
     ctx.save();
     ctx.translate(this.x, this.y);
     ctx.rotate((this.rotation * Math.PI) / 180);
-    ctx.fillStyle = `rgba(248, 187, 208, ${this.opacity})`; // Warna Kelopak Pink
+    ctx.fillStyle = `rgba(248, 187, 208, ${this.opacity})`;
     ctx.beginPath();
     ctx.ellipse(0, 0, this.size, this.size / 2, 0, 0, 2 * Math.PI);
     ctx.fill();
@@ -810,13 +792,11 @@ function animatePetals() {
 }
 animatePetals();
 
-// Inisialisasi awal saat load
 window.addEventListener('DOMContentLoaded', () => {
   getGuestName();
   loadWishes();
 });
 
-// Intersection Observer untuk animasi muncul kartu
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if(e.isIntersecting) e.target.classList.add("show");
